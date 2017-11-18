@@ -21,3 +21,12 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext{
+    // 版本号相关
+    versionCode = 1;
+    versionName = '1.0.0';
+    
+    // 相关依赖版本
+    supportVersion = '25.3.1'
+}
