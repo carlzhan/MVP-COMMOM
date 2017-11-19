@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * Created by carlzhan on 2017/11/18.
  */
@@ -14,6 +17,7 @@ import android.view.ViewGroup;
 public abstract class Fragment extends android.support.v4.app.Fragment {
 
     protected View mRootView;
+    private Unbinder mUnbinder;
 
     @Override
     public void onAttach(Context context) {
@@ -59,7 +63,7 @@ public abstract class Fragment extends android.support.v4.app.Fragment {
      * @param root
      */
     protected void initWidget(View root) {
-
+        mUnbinder = ButterKnife.bind(this, root);
     }
 
     /**

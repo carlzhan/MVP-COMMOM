@@ -8,18 +8,23 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * Created by carlzhan on 2017/11/18.
  */
 
 public abstract class Activity extends AppCompatActivity {
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initWindows();
 
         if (initArgs(getIntent().getExtras())) {
-            getContentLayoutId();
+            int contentLayoutId = getContentLayoutId();
+            setContentView(contentLayoutId);
             initWidget();
             initData();
         } else {
@@ -55,7 +60,7 @@ public abstract class Activity extends AppCompatActivity {
      * 初始化控件
      */
     protected void initWidget() {
-
+        ButterKnife.bind(this);
     }
 
     /**
