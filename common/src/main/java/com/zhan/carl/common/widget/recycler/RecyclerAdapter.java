@@ -160,6 +160,15 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAd
         notifyDataSetChanged();
     }
 
+    @Override
+    public void upData(T data, ViewHolder<T> viewHolder) {
+        int pos = viewHolder.getAdapterPosition();
+        if (pos > 0) {
+            mDataList.remove(pos);
+            mDataList.add(pos, data);
+            notifyItemChanged(pos);
+        }
+    }
 
     @Override
     public void onClick(View v) {
@@ -205,8 +214,7 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAd
         //  当Cell长按时触发
         void onItemLongClick(RecyclerAdapter.ViewHolder holder, T data);
     }
-
-
+    
     public static abstract class ViewHolder<T> extends RecyclerView.ViewHolder {
 
         protected T mData;
@@ -245,4 +253,17 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAd
             }
         }
     }
+    
+    public static abstract class AdapterListenerImpl<T> implements AdapterListener<T>{
+
+        @Override
+        public void onItemClick(ViewHolder holder, T data) {
+            
+        }
+
+        @Override
+        public void onItemLongClick(ViewHolder holder, T data) {
+
+        }
+    } 
 }
